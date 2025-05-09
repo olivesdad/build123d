@@ -3,9 +3,7 @@
 
 pkgs.mkShellNoCC rec {
   packages = with pkgs; [
-    (python3.withPackages (ps: [ 
-	ps.zlib-ng
-	]))
+    python3
     stdenv.cc.cc.lib
     gcc
     expat
