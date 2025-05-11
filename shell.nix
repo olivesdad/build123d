@@ -1,17 +1,15 @@
-{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/tarball/nixos-24.11") {} }:
-
-
-pkgs.mkShellNoCC rec {
-  packages = with pkgs; [
-    python3
-    stdenv.cc.cc.lib
-    gcc
-    expat
-    libGL
-    xorg.libX11
-    xorg.libXrender
-    zlib
+let
+  pkgs = import <nixpkgs> {};
+  
+in pkgs.mkShell rec {
+  packages = let 
+    cadquery-ocp = pkgs.python3Packages.callPackage ./cadquery-ocp.nix {};
+    build123d = pkgs.python3Packages.callPackage ./build123d.nix {};  
+   in
+   [
+    (pkgs.python312.withPackages (p: with p; [
+      #build123d
+      cadquery-ocp
+    ]))
   ];
-  LD_LIBRARY_PATH=pkgs.lib.makeLibraryPath packages;
 }
-
