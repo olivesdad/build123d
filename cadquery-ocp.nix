@@ -8,23 +8,28 @@
   fetchPypi,
   pythonOlder,
   setuptools,
-  fetchFromGitHub,
+  fetchurl,
+  system,
 }:
 
+
 buildPythonPackage rec {
-  pname = "cadquery-ocp";
-  version = "7.8.1.1";
-  format = "setuptools";
+  pname = "cadquery_ocp";
+  version = "7.8.1.1.post1";
+  format = "wheel";
+  platform = builtins.head (builtins.split "-" "${system}");
+  dist = "cp313";
+  python = "cp313-cp313";
+  abi = "manylinux_2_31";
 
   disabled = pythonOlder "3.7";
 
   __darwinAllowLocalNetworking = true;
 
-  src = fetchFromGitHub {
-    owner = "CadQuery";
-    repo = "pywrap";
-    rev = "master";
-    hash = "sha256-u+P/SUGpYhzA1oVbEv26DF8PBEpsotEk4iXIXZhgzHc=";
+  src = fetchurl {
+    url =  "https://files.pythonhosted.org/packages/${dist}/${builtins.substring 0 1 pname}/${pname}/${pname}-${version}-${python}-${abi}_${platform}.whl";
+    sha256 = "sha256-CBAX5Th96+S/MancIiwlE+JtGGDKmQEZv+kKaXCncQQ=";
+    hash = "";
   };
 
 

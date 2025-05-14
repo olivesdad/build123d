@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   stdenv,
   buildPythonPackage,
   certifi,
@@ -26,7 +27,10 @@
   anytree,
   ezdxf,
   # stuff
-  ...
+  cadquery-ocp,
+  trianglesolver,
+  py-lib3mf,
+
 }:
 
 buildPythonPackage rec {
@@ -45,7 +49,9 @@ buildPythonPackage rec {
 
   patches = [
   ];
+  #poop = pkgs.python3Packages.callPackage ./trianglesolver.nix {};
 
+  
   dependencies = [
     stdenv.cc.cc.lib
     gcc
@@ -60,6 +66,9 @@ buildPythonPackage rec {
     ipython
     ezdxf
     anytree
+    cadquery-ocp
+    trianglesolver
+    py-lib3mf
   ];
 
   optional-dependencies = {
