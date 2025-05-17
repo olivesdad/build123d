@@ -18,8 +18,8 @@ buildPythonPackage rec {
   version = "7.8.1.1.post1";
   format = "wheel";
   platform = builtins.head (builtins.split "-" "${system}");
-  dist = "cp313";
-  python = "cp313-cp313";
+  dist = "cp312";
+  python = "cp312-cp312";
   abi = "manylinux_2_31";
 
   disabled = pythonOlder "3.7";
@@ -28,7 +28,7 @@ buildPythonPackage rec {
 
   src = fetchurl {
     url =  "https://files.pythonhosted.org/packages/${dist}/${builtins.substring 0 1 pname}/${pname}/${pname}-${version}-${python}-${abi}_${platform}.whl";
-    sha256 = "sha256-CBAX5Th96+S/MancIiwlE+JtGGDKmQEZv+kKaXCncQQ=";
+    sha256 = "sha256-SIIHToZyIggVNXm6ruJGvk+xC9oi3CDRAcQVHzZCB7k=";
     hash = "";
   };
 

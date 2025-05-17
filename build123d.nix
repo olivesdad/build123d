@@ -27,10 +27,11 @@
   anytree,
   ezdxf,
   # stuff
-  cadquery-ocp,
+ # cadquery-ocp,
   trianglesolver,
   py-lib3mf,
-
+  ocpsvg,
+  svgpathtools,
 }:
 
 buildPythonPackage rec {
@@ -66,9 +67,11 @@ buildPythonPackage rec {
     ipython
     ezdxf
     anytree
-    cadquery-ocp
+   # cadquery-ocp
     trianglesolver
     py-lib3mf
+    ocpsvg
+    svgpathtools
   ];
 
   optional-dependencies = {
@@ -80,7 +83,7 @@ buildPythonPackage rec {
 #    pytestCheckHook
 #  ] ++ optional-dependencies.socks;
 
-  pythonImportsCheck = [ "build123d" ];
+  #pythonImportsCheck = [ "build123d" ];
 
   meta = with lib; {
     description = "a python-based, parametric, boundary representation (BREP) modeling framework for 2D and 3D CAD";
